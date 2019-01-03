@@ -15,7 +15,7 @@ const {
   customResourceHelper
 } = require('@cloudcomponents/custom-resource-helper');
 
-module.exports.handler = customResourceHandler(
+module.exports.handler = customResourceHelper(
   () => ({
     onCreate: async (event, context, logger) => {
       // Place your code to handle Create events here.
