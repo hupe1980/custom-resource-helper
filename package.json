@@ -1,0 +1,41 @@
+{
+  "name": "@cloudcomponents/custom-resource-helper",
+  "version": "1.0.0",
+  "description": "Helper for custom resources",
+  "license": "MIT",
+  "author": "hello@webappsolutions.de",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudcomponents/custom-resource-helper"
+  },
+  "keywords": [
+    "aws",
+    "custom resource",
+    "cloudformation",
+    "cfn",
+    "lambda"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc -w",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.17",
+    "@types/jest": "^23.3.10",
+    "@types/node": "^8.9.4",
+    "axios-mock-adapter": "^1.16.0",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.2"
+  }
+}
