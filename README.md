@@ -46,7 +46,7 @@ module.exports.handler = customResourceHandler(
 );
 ```
 
-# Logging
+## Logging
 
 By default log level is set to warning. This can be customized with a custom LogFactory or by defining the "LogLevel" property in the custom resource resource in your template. For example:
 
@@ -55,7 +55,7 @@ By default log level is set to warning. This can be customized with a custom Log
     "Type": "AWS::CloudFormation::CustomResource",
     "Properties": {
         "LogLevel": "debug",
-        ...
+        //...
     }
 }
 ```
