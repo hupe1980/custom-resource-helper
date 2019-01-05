@@ -20,22 +20,34 @@ export interface ResourceHandlerReturn {
   };
 }
 
-export interface ResourceHandler {
-  onCreate(
+export interface OnCreateHandler {
+  (
     event: CloudFormationCustomResourceCreateEvent,
-    context: Context,
-    logger: Logger
+    context?: Context,
+    logger?: Logger
   ): Promise<ResourceHandlerReturn>;
-  onUpdate(
+}
+
+export interface OnUpdateHandler {
+  (
     event: CloudFormationCustomResourceUpdateEvent,
-    context: Context,
-    logger: Logger
+    context?: Context,
+    logger?: Logger
   ): Promise<ResourceHandlerReturn>;
-  onDelete(
+}
+
+export interface OnDeleteHandler {
+  (
     event: CloudFormationCustomResourceDeleteEvent,
-    context: Context,
-    logger: Logger
+    context?: Context,
+    logger?: Logger
   ): Promise<void>;
+}
+
+export interface ResourceHandler {
+  onCreate: OnCreateHandler;
+  onUpdate: OnUpdateHandler;
+  onDelete: OnDeleteHandler;
 }
 
 export interface ResourceHandlerFactory {

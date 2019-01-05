@@ -1,7 +1,7 @@
 {
   "name": "@cloudcomponents/custom-resource-helper",
-  "version": "1.0.0",
-  "description": "Helper for custom resources",
+  "version": "1.0.1",
+  "description": "Helper for cloudformation custom resources",
   "license": "MIT",
   "author": "hello@webappsolutions.de",
   "repository": {
