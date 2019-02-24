@@ -1,5 +1,7 @@
 # @cloudcomponents/custom-resource-helper
 
+[![Build Status](https://travis-ci.org/cloudcomponents/custom-resource-helper.svg?branch=master)](https://travis-ci.org/cloudcomponents/custom-resource-helper)
+
 > A helper for cloudformation custom resources
 
 ## Install
