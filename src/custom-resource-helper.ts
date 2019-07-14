@@ -15,7 +15,7 @@ import {
 
 export interface ResourceHandlerReturn {
   physicalResourceId: string;
-  responseData: {
+  responseData?: {
     [Key: string]: any;
   };
 }
@@ -157,14 +157,14 @@ const handleRessource = async (
 
   switch (event.RequestType) {
     case 'Create':
-      ({ physicalResourceId, responseData } = await onCreate(
+      ({ physicalResourceId, responseData = {} } = await onCreate(
         event,
         context,
         logger
       ));
       break;
     case 'Update':
-      ({ physicalResourceId, responseData } = await onUpdate(
+      ({ physicalResourceId, responseData = {} } = await onUpdate(
         event,
         context,
         logger

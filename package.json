@@ -1,6 +1,6 @@
 {
   "name": "@cloudcomponents/custom-resource-helper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Helper for cloudformation custom resources",
   "license": "MIT",
   "author": "hello@webappsolutions.de",
@@ -29,16 +29,16 @@
     "test": "jest"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "winston": "^3.1.0"
+    "axios": "^0.18.1",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.17",
-    "@types/jest": "^23.3.10",
-    "@types/node": "^8.9.4",
-    "axios-mock-adapter": "^1.16.0",
-    "jest": "^23.6.0",
-    "ts-jest": "^23.10.5",
-    "typescript": "^3.2.2"
+    "@types/aws-lambda": "^8.10.28",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^8.10.50",
+    "axios-mock-adapter": "^1.17.0",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
   }
 }

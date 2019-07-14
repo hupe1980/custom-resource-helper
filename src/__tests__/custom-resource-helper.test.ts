@@ -1,14 +1,8 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-
 import { CloudFormationCustomResourceEvent, Context } from 'aws-lambda';
 
-import {
-  //customResourceHelper,
-  ResourceHandler
-} from '../custom-resource-helper';
-
-const { customResourceHelper } = require('../custom-resource-helper');
+import { ResourceHandler, customResourceHelper } from '../custom-resource-helper';
 
 const testEvent: CloudFormationCustomResourceEvent = {
   RequestType: 'Create',
@@ -46,9 +40,9 @@ const createResourceHandler = (sleep = 0): ResourceHandler => ({
       setTimeout(() => resolve({ physicalResourceId: '123' }), sleep)
     );
   }),
-  onUpdate: jest.fn(() => ({
-    physicalResourceId: '123'
-  })),
+  onUpdate: jest.fn(() => {
+    return new Promise(resolve => resolve({ physicalResourceId: '123' }))
+  }),
   onDelete: jest.fn()
 });
 
