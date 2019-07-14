@@ -1,6 +1,6 @@
 {
   "name": "@cloudcomponents/custom-resource-helper",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Helper for cloudformation custom resources",
   "license": "MIT",
   "author": "hello@webappsolutions.de",
@@ -24,9 +24,10 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc -w",
-    "test": "jest"
+    "build": "rimraf lib && tsc",
+    "build:watch": "rimraf lib && tsc -w",
+    "test": "jest",
+    "prepare": "npm run build && npm run test"
   },
   "dependencies": {
     "axios": "^0.18.1",
@@ -38,6 +39,7 @@
     "@types/node": "^8.10.50",
     "axios-mock-adapter": "^1.17.0",
     "jest": "^24.8.0",
+    "rimraf": "^2.6.3",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
   }
