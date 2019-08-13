@@ -1,12 +1,11 @@
 {
-  "name": "@cloudcomponents/custom-resource-helper",
-  "version": "1.0.5",
+  "name": "custom-resource-helper",
+  "version": "1.0.6",
   "description": "Helper for cloudformation custom resources",
   "license": "MIT",
-  "author": "hello@webappsolutions.de",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cloudcomponents/custom-resource-helper"
+    "url": "git+https://github.com/hupe1980/custom-resource-helper"
   },
   "keywords": [
     "aws",

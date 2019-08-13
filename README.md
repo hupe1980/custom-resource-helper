@@ -1,13 +1,13 @@
 # @cloudcomponents/custom-resource-helper
 
-[![Build Status](https://travis-ci.org/cloudcomponents/custom-resource-helper.svg?branch=master)](https://travis-ci.org/cloudcomponents/custom-resource-helper)
+[![Build Status](https://travis-ci.org/hupe1980/custom-resource-helper.svg?branch=master)](https://travis-ci.org/hupe1980/custom-resource-helper)
 
 > A helper for cloudformation custom resources
 
 ## Install
 
 ```bash
-npm install --save @cloudcomponents/custom-resource-helper
+npm install --save custom-resource-helper
 ```
 
 ## How to use
@@ -15,7 +15,7 @@ npm install --save @cloudcomponents/custom-resource-helper
 ```javascript
 const {
   customResourceHelper
-} = require('@cloudcomponents/custom-resource-helper');
+} = require('custom-resource-helper');
 
 module.exports.handler = customResourceHelper(
   () => ({
