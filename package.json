@@ -1,6 +1,6 @@
 {
   "name": "custom-resource-helper",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Helper for cloudformation custom resources",
   "license": "MIT",
   "repository": {
@@ -19,9 +19,6 @@
   "files": [
     "lib"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "build": "rimraf lib && tsc",
     "build:watch": "rimraf lib && tsc -w",
@@ -29,16 +26,18 @@
     "prepare": "npm run build && npm run test"
   },
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.19.0",
+    "lodash.camelcase": "^4.3.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.30",
-    "@types/jest": "^24.0.15",
+    "@types/aws-lambda": "^8.10.31",
+    "@types/jest": "^24.0.17",
+    "@types/lodash.camelcase": "^4.3.6",
     "@types/node": "^8.10.51",
     "axios-mock-adapter": "^1.17.0",
     "jest": "^24.8.0",
-    "rimraf": "^2.6.3",
+    "rimraf": "^2.7.0",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
   }

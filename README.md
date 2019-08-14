@@ -12,14 +12,12 @@ npm install --save custom-resource-helper
 
 ## How to use
 
-```javascript
-const {
-  customResourceHelper
-} = require('custom-resource-helper');
+```typescript
+import { customResourceHelper, ResourceHandler, ResourceHandlerReturn } from 'custom-resource-helper';
 
-module.exports.handler = customResourceHelper(
-  () => ({
-    onCreate: async (event, context, logger) => {
+export const handler = customResourceHelper(
+  (): ResourceHandler => ({
+    onCreate: async (event, context, logger): Promise<ResourceHandlerReturn> => {
       // Place your code to handle Create events here.
       const physicalResourceId = 'myResourceId';
       const responseData = {};
@@ -29,7 +27,7 @@ module.exports.handler = customResourceHelper(
         responseData
       };
     },
-    onUpdate: async (event, context, logger) => {
+    onUpdate: async (event, context, logger): Promise<ResourceHandlerReturn> => {
       // Place your code to handle Update events here.
       const physicalResourceId = event.PhysicalResourceId;
       const responseData = {};
@@ -39,12 +37,12 @@ module.exports.handler = customResourceHelper(
         responseData
       };
     },
-    onDelete: async (event, context, logger) => {
+    onDelete: async (event, context, logger): Promise<void> => {
       // Place your code to handle Delete events here
       return;
     }
   })
-  /*optional: customLogFactory */
+  /* optional: customLogFactory */
 );
 ```
 
@@ -60,4 +58,29 @@ By default log level is set to warning. This can be customized with a custom Log
         //...
     }
 }
+```
+
+## Utils
+
+```typescript
+import { camelizeKeys } from 'custom-resource-helper';
+//...
+console.log(event);
+/*
+{
+  ...
+  ResourceProperties: {
+    ...
+    BucketName: 'testbucket',
+    ---
+  }
+  ...
+}
+*/
+const {
+  resourceProperties: { bucketName }
+} = camelizeKeys(event);
+
+console.log(bucketName); //prints: testBuckets
+//...
 ```
