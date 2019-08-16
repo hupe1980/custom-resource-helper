@@ -23,24 +23,24 @@ export interface ResourceHandlerReturn {
 export interface OnCreateHandler {
   (
     event: CloudFormationCustomResourceCreateEvent,
-    context?: Context,
-    logger?: Logger
+    context: Context,
+    logger: Logger
   ): Promise<ResourceHandlerReturn>;
 }
 
 export interface OnUpdateHandler {
   (
     event: CloudFormationCustomResourceUpdateEvent,
-    context?: Context,
-    logger?: Logger
+    context: Context,
+    logger: Logger
   ): Promise<ResourceHandlerReturn>;
 }
 
 export interface OnDeleteHandler {
   (
     event: CloudFormationCustomResourceDeleteEvent,
-    context?: Context,
-    logger?: Logger
+    context: Context,
+    logger: Logger
   ): Promise<void>;
 }
 

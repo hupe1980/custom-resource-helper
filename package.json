@@ -1,6 +1,6 @@
 {
   "name": "custom-resource-helper",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Helper for cloudformation custom resources",
   "license": "MIT",
   "repository": {
