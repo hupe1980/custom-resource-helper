@@ -23,7 +23,7 @@ const testContext: Context = {
   functionName: 'Func',
   functionVersion: '1.0',
   invokedFunctionArn: 'arn:',
-  memoryLimitInMB: 128,
+  memoryLimitInMB: '128',
   awsRequestId: 'RequestID',
   logGroupName: 'LogName',
   logStreamName: '/aws/log/stream',
