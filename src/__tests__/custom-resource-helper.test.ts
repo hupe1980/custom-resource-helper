@@ -1,6 +1,6 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { CloudFormationCustomResourceEvent, Context } from 'aws-lambda';
+import type { CloudFormationCustomResourceEvent, Context } from 'aws-lambda';
 
 import { ResourceHandler, customResourceHelper } from '../custom-resource-helper';
 
@@ -57,7 +57,8 @@ describe('custom-resource-helper: helper', () => {
   it('should sends a success response', async () => {
     await customResourceHelper(() => createResourceHandler())(
       testEvent,
-      testContext
+      testContext,
+      () => jest.fn(),
     );
 
     const data = JSON.parse(mock.history.put[0].data);
@@ -67,7 +68,7 @@ describe('custom-resource-helper: helper', () => {
   it('should sends a failed response', async () => {
     await customResourceHelper(() => {
       throw new Error();
-    })(testEvent, testContext);
+    })(testEvent, testContext, () => jest.fn(),);
 
     const data = JSON.parse(mock.history.put[0].data);
     expect(data.Status).toBe('FAILED');
@@ -76,7 +77,8 @@ describe('custom-resource-helper: helper', () => {
   it('should abort execution and send failure message', async () => {
     await customResourceHelper(() => createResourceHandler(5))(
       testEvent,
-      testContext
+      testContext,
+      () => jest.fn(),
     );
 
     const data = JSON.parse(mock.history.put[0].data);
