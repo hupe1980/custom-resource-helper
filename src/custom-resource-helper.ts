@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {
+import type {
   CloudFormationCustomResourceEvent,
   CloudFormationCustomResourceCreateEvent,
   CloudFormationCustomResourceUpdateEvent,
@@ -15,9 +15,7 @@ import {
 
 export interface ResourceHandlerReturn {
   physicalResourceId: string;
-  responseData?: {
-    [Key: string]: any;
-  };
+  responseData?: Record<string, any>;
 }
 
 export interface OnCreateHandler {
@@ -84,9 +82,7 @@ export const customResourceHelper = (
 
 interface SendResponseDetails {
   responseStatus: 'SUCCESS' | 'FAILED';
-  responseData?: {
-    [Key: string]: any;
-  };
+  responseData?: Record<string, any>;
   physicalResourceId?: string;
   reason?: string;
 }

@@ -28,17 +28,17 @@
   "dependencies": {
     "axios": "^0.19.2",
     "lodash.camelcase": "^4.3.0",
-    "winston": "^3.2.1"
+    "winston": "^3.3.3"
   },
   "devDependencies": {
-    "@types/aws-lambda": "8.10.51",
-    "@types/jest": "^25.2.1",
+    "@types/aws-lambda": "8.10.59",
+    "@types/jest": "^26.0.8",
     "@types/lodash.camelcase": "^4.3.6",
-    "@types/node": "13.13.4",
-    "axios-mock-adapter": "^1.18.1",
-    "jest": "^25.4.0",
+    "@types/node": "12.12.6",
+    "axios-mock-adapter": "^1.18.2",
+    "jest": "^26.2.2",
     "rimraf": "^3.0.2",
-    "ts-jest": "^25.4.0",
-    "typescript": "^3.8.3"
+    "ts-jest": "^26.1.4",
+    "typescript": "^3.9.7"
   }
 }
