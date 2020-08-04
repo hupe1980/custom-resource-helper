@@ -4,6 +4,7 @@ import type {
   CloudFormationCustomResourceCreateEvent,
   CloudFormationCustomResourceUpdateEvent,
   CloudFormationCustomResourceDeleteEvent,
+  CloudFormationCustomResourceHandler,
   Context
 } from 'aws-lambda';
 
@@ -15,7 +16,7 @@ import {
 
 export interface ResourceHandlerReturn {
   physicalResourceId: string;
-  responseData?: Record<string, any>;
+  responseData?: Record<string, unknown>;
 }
 
 export interface OnCreateHandler {
@@ -43,9 +44,9 @@ export interface OnDeleteHandler {
 }
 
 export interface ResourceHandler {
-  onCreate: OnCreateHandler;
-  onUpdate: OnUpdateHandler;
-  onDelete: OnDeleteHandler;
+  onCreate?: OnCreateHandler;
+  onUpdate?: OnUpdateHandler;
+  onDelete?: OnDeleteHandler;
 }
 
 export interface ResourceHandlerFactory {
@@ -55,7 +56,7 @@ export interface ResourceHandlerFactory {
 export const customResourceHelper = (
   resourceHandlerFactory: ResourceHandlerFactory,
   logFactory?: LogFactory
-) => async (event: CloudFormationCustomResourceEvent, context: Context) => {
+): CloudFormationCustomResourceHandler => async (event: CloudFormationCustomResourceEvent, context: Context): Promise<void> => {
   // Initialise default logger
   let logger = defaultLogFactory(event);
   try {
@@ -74,7 +75,7 @@ export const customResourceHelper = (
     logger.error(error);
     const responseDetails: SendResponseDetails = {
       responseStatus: 'FAILED',
-      reason: error.message
+      reason: error.message || 'Internal Error'
     };
     return sendResponse(event, context, responseDetails, logger);
   }
@@ -82,7 +83,7 @@ export const customResourceHelper = (
 
 interface SendResponseDetails {
   responseStatus: 'SUCCESS' | 'FAILED';
-  responseData?: Record<string, any>;
+  responseData?: Record<string, unknown>;
   physicalResourceId?: string;
   reason?: string;
 }
@@ -92,7 +93,7 @@ const sendResponse = async (
   context: Context,
   sendResponseDetails: SendResponseDetails,
   logger: Logger
-) => {
+): Promise<void> => {
   const {
     responseStatus,
     physicalResourceId,
@@ -136,7 +137,7 @@ const handleRessource = async (
   context: Context,
   resourceHandler: ResourceHandler,
   logger: Logger
-) => {
+): Promise<void> => {
   logger.debug(event);
 
   // Define a physicalResourceId for the resource, if the event is an update and the
@@ -153,21 +154,27 @@ const handleRessource = async (
 
   switch (event.RequestType) {
     case 'Create':
-      ({ physicalResourceId, responseData = {} } = await onCreate(
-        event,
-        context,
-        logger
-      ));
+      if(onCreate) {
+        ({ physicalResourceId, responseData = {} } = await onCreate(
+          event,
+          context,
+          logger
+        ));
+      }
       break;
     case 'Update':
-      ({ physicalResourceId, responseData = {} } = await onUpdate(
-        event,
-        context,
-        logger
-      ));
+      if(onUpdate) {
+        ({ physicalResourceId, responseData = {} } = await onUpdate(
+          event,
+          context,
+          logger
+        ));
+      }
       break;
     case 'Delete':
-      await onDelete(event, context, logger);
+      if(onDelete) {
+        await onDelete(event, context, logger);
+      }
       break;
     default:
       throw new Error('Invalid RequestType received');
@@ -176,13 +183,14 @@ const handleRessource = async (
   // Send response back to CloudFormation
   const responseDetails: SendResponseDetails = {
     responseStatus: 'SUCCESS',
+    reason: 'OK',
     responseData,
     physicalResourceId
   };
   return sendResponse(event, context, responseDetails, logger);
 };
 
-const handleTimeout = async (context: Context, logger: Logger) =>
+const handleTimeout = async (context: Context, logger: Logger): Promise<void> =>
   new Promise((_, reject) => {
     setTimeout(() => {
       logger.error('Execution is about to time out, sending failure message');

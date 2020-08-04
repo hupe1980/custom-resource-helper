@@ -1,9 +1,11 @@
 import camelCase from 'lodash.camelcase';
 
-const isObject = (obj:any) => obj !== null && typeof obj === 'object';
+const isObject = (obj: unknown):obj is Record<string, unknown> => obj !== null && typeof obj === 'object';
 
-export const camelizeKeys = (obj:any): any => {
-    if (Array.isArray(obj)) {
+const isArray = (arr: unknown):arr is Array<string | Record<string, unknown>> => Array.isArray(arr);
+
+export const camelizeKeys = (obj: unknown): unknown => {
+    if (isArray(obj)) {
       return obj.map(v => camelizeKeys(v));
     } else if (isObject(obj)) {
       return Object.keys(obj).reduce(

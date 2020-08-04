@@ -23,6 +23,7 @@
     "build": "rimraf lib && tsc",
     "build:watch": "rimraf lib && tsc -w",
     "test": "jest",
+    "lint": "eslint '*/**/*.{ts,tsx}' --report-unused-disable-directives",
     "prepare": "npm run build && npm run test"
   },
   "dependencies": {
@@ -35,7 +36,10 @@
     "@types/jest": "^26.0.8",
     "@types/lodash.camelcase": "^4.3.6",
     "@types/node": "12.12.6",
+    "@typescript-eslint/eslint-plugin": "^3.8.0",
+    "@typescript-eslint/parser": "^3.8.0",
     "axios-mock-adapter": "^1.18.2",
+    "eslint": "^7.6.0",
     "jest": "^26.2.2",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.1.4",

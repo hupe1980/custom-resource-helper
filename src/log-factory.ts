@@ -1,7 +1,7 @@
 import * as winston from 'winston';
 import { CloudFormationCustomResourceEvent, Context } from 'aws-lambda';
 
-export interface Logger extends winston.Logger {}
+export type Logger = winston.Logger
 
 export interface LogFactory {
   (event: CloudFormationCustomResourceEvent, context?: Context): Logger;
