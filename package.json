@@ -27,7 +27,7 @@
     "prepare": "npm run build && npm run test"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "camelcase-keys": "^6.2.2",
     "winston": "^3.3.3"
   },
